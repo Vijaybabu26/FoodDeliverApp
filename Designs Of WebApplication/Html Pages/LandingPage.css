@@ -1,0 +1,30 @@
+body{
+    background-image: url('https://static.vecteezy.com/system/resources/previews/007/546/791/original/food-delivery-app-on-a-smartphone-tracking-a-delivery-man-on-a-moped-with-a-ready-meal-technology-and-logistics-concept-city-skyline-in-the-background-vector.jpg');
+    background-size: cover;
+    align-items: end;
+    background-repeat: no-repeat;
+    
+}
+.Welcome{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;
+    display: flexbox;
+    justify-content: center;
+}
+.button{
+    button{
+        height: 80px;
+        width: 200px;
+        margin: 40px;
+        border-radius: 30px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: xx-large;
+        background-color: white;
+    }
+    a{
+        text-decoration: none;
+        font-size: x-large;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: black;
+    }
+}
