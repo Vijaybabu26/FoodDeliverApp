@@ -1,6 +1,8 @@
+
 const Header = () => {
     return(
       <>
+        
         <div className="header">
         <img src="https://png.pngtree.com/template/20191014/ourmid/pngtree-pin-food-delivery-map-location-delivery-logo-concept-image_318151.jpg"/>
         <h1>FOOD DELIVERY APP</h1>
@@ -17,7 +19,7 @@ const Header = () => {
               </svg>
             </button>
             <ul class="dropdown-menu">
-              <li><button class="dropdown-item" type="button">VISAKAPATNAM</button></li>
+              <li><button class="dropdown-item" type="button">VISAKHAPATNAM</button></li>
             </ul>
           </div>
           <a href="">SIGN IN</a>
