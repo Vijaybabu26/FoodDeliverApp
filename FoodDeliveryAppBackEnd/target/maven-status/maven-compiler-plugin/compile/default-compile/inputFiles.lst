@@ -7,8 +7,8 @@ C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\
 C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\MenuDTO.java
 C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\OrderDTO.java
 C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\OrderItemsDTO.java
-C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\RestaurantDTO.java
-C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\UserDTO.java
+C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\Restaurant.java
+C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\dto\User.java
 C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\FoodDeliveryAppBackEndApplication.java
 C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\repository\CartRepo.java
 C:\Users\vijay\Downloads\FoodDeliveryAppBackEnd\FoodDeliveryAppBackEnd\src\main\java\com\babu\fooddelivery\repository\MenuRepo.java

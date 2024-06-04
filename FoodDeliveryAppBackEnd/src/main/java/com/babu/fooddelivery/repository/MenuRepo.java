@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.babu.fooddelivery.dto.MenuDTO;
+import com.babu.fooddelivery.dto.Menu;
 
 @Repository
-public interface MenuRepo extends JpaRepository<MenuDTO, Integer>{
+public interface MenuRepo extends JpaRepository<Menu, Integer>{
 
-	@Query("SELECT m FROM MenuDTO m WHERE m.ResId = ?1")
-	List<MenuDTO> FindMenuByResId(Integer res);
+	@Query("SELECT m FROM Menu m WHERE m.resId = ?1")
+	List<Menu> FindMenuByResId(Integer res);
 	
 }

@@ -7,6 +7,8 @@ package com.babu.fooddelivery.controller;
 import java.util.UUID;
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.Services.UserService;
-import com.babu.fooddelivery.dto.UserDTO;
+import com.babu.fooddelivery.dto.User;
+
 
 
 @RestController
-@RequestMapping(value = "/api/user" ,consumes = "application/json;charset=UTF-8")
+@RequestMapping(value = "/api/user")
 public class UserController {
 	
 	@Autowired
@@ -32,7 +35,7 @@ public class UserController {
 
 	
 	@PostMapping("/registeruser" )
-	public ResponseEntity<String> RegisterUser(@RequestBody UserDTO user) {
+	public ResponseEntity<String> RegisterUser(@RequestBody User user) {
 		if(userser.registerUser(user) != null) {
 			String Message = "Registration Successfull";
 			System.out.println(user);
@@ -41,20 +44,23 @@ public class UserController {
 		return ResponseEntity.ok("Registration Failed");
 	}
 	
+	
+	
 	@PostMapping("/loginuser/{PhoneNo}")
-	public ResponseEntity<String> LoginUser(@PathVariable String PhoneNo){
-		
-		if(userser.getUserWithAccounts(PhoneNo) != null) {
-			UUID uuid = UUID.randomUUID();
-	        String Token = "TOKEN" + uuid.toString() + "FOODDELIVERY"; 
-			return ResponseEntity.ok("Login Success" + Token.toUpperCase());
-		}
-		return ResponseEntity.ok("Login Failed");
-	}
+    public ResponseEntity<String> loginUser(@PathVariable String phoneNo) {
+        User user = userser.getUserWithAccounts(phoneNo);
+        if (user != null) {
+            UUID uuid = UUID.randomUUID();
+            String token = "TOKEN" + uuid.toString() + "FOODDELIVERY";
+            return ResponseEntity.ok("Login Success. Token: " + token.toUpperCase());
+        }
+        return ResponseEntity.ok("Login Failed");
+    }
+
 	
 	@GetMapping("/user/{PhoneNo}")
-	public ResponseEntity<UserDTO> getUserDetails(@PathVariable String PhoneNo) {
-	    UserDTO user = userser.getUserWithAccounts(PhoneNo);
+	public ResponseEntity<User> getUserDetails(@PathVariable String PhoneNo) {
+	    User user = userser.getUserWithAccounts(PhoneNo);
 	    if (user != null) {
 	        return ResponseEntity.ok(user);
 	    } else {

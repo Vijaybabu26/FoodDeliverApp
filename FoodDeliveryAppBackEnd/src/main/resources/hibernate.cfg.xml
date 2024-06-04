@@ -16,8 +16,8 @@
 		
 		
 		
-		<mapping class="com.babu.fooddelivery.dto.UserDTO" />
-		<mapping class="com.babu.fooddelivery.dto.RestaurantDTO" />
+		<mapping class="com.babu.fooddelivery.dto.User" />
+		<mapping class="com.babu.fooddelivery.dto.Restaurant" />
 		
 		
 		

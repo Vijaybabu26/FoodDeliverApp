@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.Services.OrderService;
-import com.babu.fooddelivery.dto.OrderDTO;
+import com.babu.fooddelivery.dto.Order;
 
 @RestController
 @RequestMapping(value = "/api/orders")
@@ -22,7 +22,7 @@ public class OrderController {
 	OrderService orderser;
 	
 	@PostMapping("/placeorder" )
-	public ResponseEntity<String> PlaceOrder(@RequestBody OrderDTO order) {
+	public ResponseEntity<String> PlaceOrder(@RequestBody Order order) {
 		if(orderser.PlaceOrder(order)!= null) {
 			String Message = "Order Placed Successfull";
 			System.out.println(order);
@@ -32,8 +32,8 @@ public class OrderController {
 	}
 	
 	@GetMapping("/history")
-	public ResponseEntity<List<OrderDTO>> GetOrderHistory(){
-		List<OrderDTO> orderList = orderser.GetOrderHistory();
+	public ResponseEntity<List<Order>> GetOrderHistory(){
+		List<Order> orderList = orderser.GetOrderHistory();
 		if(orderList != null) {
 			return ResponseEntity.ok(orderList);
 		}else {

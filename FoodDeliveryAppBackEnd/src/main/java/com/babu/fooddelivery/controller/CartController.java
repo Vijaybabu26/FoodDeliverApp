@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.Services.CartService;
-import com.babu.fooddelivery.dto.OrderItemsDTO;
+import com.babu.fooddelivery.dto.OrderItems;
+
 
 
 @RestController
@@ -19,7 +20,7 @@ public class CartController {
 	CartService cartser;
 	
 	@PostMapping("/additems" )
-	public ResponseEntity<String> AddCart(@RequestBody OrderItemsDTO item) {
+	public ResponseEntity<String> AddCart(@RequestBody OrderItems item) {
 		if(cartser.AddItemsCart(item)!= null) {
 			String Message = "Item Added to Cart Successfull";
 			System.out.println(item);

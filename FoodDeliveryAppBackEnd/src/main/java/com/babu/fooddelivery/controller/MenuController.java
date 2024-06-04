@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.Services.MenuService;
-import com.babu.fooddelivery.dto.MenuDTO;
+import com.babu.fooddelivery.dto.Menu;
+
 
 @RestController
 @RequestMapping(value ="/api/Menu")
@@ -22,7 +23,7 @@ public class MenuController {
 	MenuService menuser;
 	
 	@PostMapping("/AddItem")
-	public ResponseEntity<String> AddMenuItem(@RequestBody MenuDTO menu){
+	public ResponseEntity<String> AddMenuItem(@RequestBody Menu menu){
 		if(menuser.AddMenu(menu) != null) {
 			String Message = "Item Added To Menu Successfull";
 			return ResponseEntity.ok(Message);
@@ -30,7 +31,7 @@ public class MenuController {
 		return ResponseEntity.ok("Item Adding To Menu Failed");
 	}
 	
-	public ResponseEntity<String> DeleteItem(@RequestBody MenuDTO menu){
+	public ResponseEntity<String> DeleteItem(@RequestBody Menu menu){
 		if(menuser.DeleteMenu(menu)) {
 			String Message = "Item Deleted From Menu Successfull";
 			return ResponseEntity.ok(Message);
@@ -39,8 +40,8 @@ public class MenuController {
 	}
 	
 	@GetMapping("/menu/{ResId}")
-	public ResponseEntity<List<MenuDTO>> GetMenuOfRestaurant(@PathVariable Integer ResId){
-		List<MenuDTO> menu = menuser.GetRestaurantMenu(ResId);
+	public ResponseEntity<List<Menu>> GetMenuOfRestaurant(@PathVariable Integer ResId){
+		List<Menu> menu = menuser.GetRestaurantMenu(ResId);
 		if(menu != null) {
 			return ResponseEntity.ok(menu);
 		}else {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.Services.RestaurantService;
-import com.babu.fooddelivery.dto.RestaurantDTO;
+import com.babu.fooddelivery.dto.Restaurant;
 
 
 @RestController
@@ -24,7 +24,7 @@ public class RestaurantController {
 	RestaurantService resser;
 	
 	@PostMapping("/registerRestaurant" )
-	public ResponseEntity<String> RegisterRestaurant(@RequestBody RestaurantDTO res) {
+	public ResponseEntity<String> RegisterRestaurant(@RequestBody Restaurant res) {
 		if(resser.registerRestaurant(res) != null) {
 			String Message = "Registration Successfull";
 			System.out.println(res);
@@ -34,8 +34,8 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/getRestaurantDetails/{ResId}")
-	public ResponseEntity<RestaurantDTO> GetRestaurantDetails(@PathVariable Integer ResId){
-		RestaurantDTO res = resser.GetRestaurantDetails(ResId);
+	public ResponseEntity<Restaurant> GetRestaurantDetails(@PathVariable Integer ResId){
+		Restaurant res = resser.getRestaurantDetails(ResId);
 		if(res != null) {
 		        return ResponseEntity.ok(res);
 		} else {
@@ -44,8 +44,8 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/RestaurantList")
-	public ResponseEntity<List<RestaurantDTO>> GetRestaurantlist(){
-		List<RestaurantDTO> resList = resser.GetRestaurantList();
+	public ResponseEntity<List<Restaurant>> GetRestaurantlist(){
+		List<Restaurant> resList = resser.GetRestaurantList();
 		if(resList != null) {
 			return ResponseEntity.ok(resList);
 		}else {

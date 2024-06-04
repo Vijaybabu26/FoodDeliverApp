@@ -4,12 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.babu.fooddelivery.dto.UserDTO;
+import com.babu.fooddelivery.dto.User;
+
 
 @Repository
-public interface UserRepo extends JpaRepository<UserDTO, Long>{
+public interface UserRepo extends JpaRepository<User, Integer>{
 	
-	@Query("SELECT u FROM UserDTO u WHERE u.PhoneNo = ?1")
-	UserDTO FindUserbyphno(String PhoneNo);
+	@Query("SELECT u FROM User u WHERE u.phoneNo = ?1")
+	User findByPhoneNo(String phoneNo);
 	
 }
