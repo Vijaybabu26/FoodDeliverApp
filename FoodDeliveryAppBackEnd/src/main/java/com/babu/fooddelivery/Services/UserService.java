@@ -17,7 +17,7 @@ public class UserService {
 		return userrepo.save(user);
 	}
 	
-	 public User getUserWithAccounts(String phoneNo) {
-	        return userrepo.findByPhoneNo(phoneNo);
+	 public boolean getUserWithAccounts(String phno) {
+	    return userrepo.findByPhoneNo(phno)!= null;
 	 }
 }

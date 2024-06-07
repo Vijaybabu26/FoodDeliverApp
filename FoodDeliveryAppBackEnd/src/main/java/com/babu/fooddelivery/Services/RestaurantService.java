@@ -19,6 +19,10 @@ public class RestaurantService {
 		return resrepo.save(res);
 	}
 	
+	public boolean isRestaurantExists(Restaurant res) {
+	   return resrepo.findByName(res.getResName()) != null;
+	}
+	
 	public Restaurant getRestaurantDetails(Integer resId) {
 		return resrepo.FindResDetailsById(resId);
 	}

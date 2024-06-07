@@ -14,31 +14,31 @@ public class Restaurant{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="ResId")
+	@Column(name ="resId")
 	private Integer resId;
 	
-	@Column(name ="ResName")
+	@Column(name ="resName")
 	private String resName;
 	
-	@Column(name ="ResDescription")
+	@Column(name ="resDescription")
 	private String resDescription;
 	
-	@Column(name ="ResAddress")
+	@Column(name ="resAddress")
 	private String resAddress;
 	
-	@Column(name ="ResPhoneNo")
+	@Column(name ="resPhoneNo")
 	private String resPhoneNo;
 	
-	@Column(name ="ResOperationHours")
+	@Column(name ="resOperationHours")
 	private String resOperationHours;
 	
-	@Column(name ="ResAvgRating")
+	@Column(name ="resAvgRating")
 	private float resAvgRating;
 	
-	@Column(name ="ResDelievryFee")
+	@Column(name ="resDelievryFee")
 	private double resDelievryFee;
 	
-	@Column(name="ResImage")
+	@Column(name="resImage")
 	private String resImage;
 
 	@Override

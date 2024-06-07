@@ -23,16 +23,20 @@ public class RestaurantController {
 	@Autowired
 	RestaurantService resser;
 	
-	@PostMapping("/registerRestaurant" )
-	public ResponseEntity<String> RegisterRestaurant(@RequestBody Restaurant res) {
-		if(resser.registerRestaurant(res) != null) {
-			String Message = "Registration Successfull";
-			System.out.println(res);
-			return ResponseEntity.ok(Message);
-		}		
-		return ResponseEntity.ok("Registration Failed");
+	@PostMapping("/registerRestaurant")
+	public ResponseEntity<String> registerRestaurant(@RequestBody Restaurant res) {
+	    if (resser.isRestaurantExists(res)) {
+	        return ResponseEntity.ok("Restaurant already exists");
+	    }
+	    
+	    if (resser.registerRestaurant(res) != null) {
+	        String message = "Registration Successful";
+	        System.out.println(res);
+	        return ResponseEntity.ok(message);
+	    }
+	    
+	    return ResponseEntity.ok("Registration Failed");
 	}
-	
 	@GetMapping("/getRestaurantDetails/{ResId}")
 	public ResponseEntity<Restaurant> GetRestaurantDetails(@PathVariable Integer ResId){
 		Restaurant res = resser.getRestaurantDetails(ResId);
