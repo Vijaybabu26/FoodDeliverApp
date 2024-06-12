@@ -1,0 +1,17 @@
+.Login{
+    width: 70%;
+    margin-left: max(5vw,25px);
+    margin-top: 50px;
+    color: #303030;
+    font-size: 16px;
+}
+
+.login-input input, textarea{
+    height: 40px;
+    width: 400px;
+    padding: 5px;
+    margin: 5px;
+}
+.login-tittle{
+    font-size: 30px;
+}

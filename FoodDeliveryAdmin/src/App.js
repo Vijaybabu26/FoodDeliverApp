@@ -8,6 +8,7 @@ import List from "./Pages/List/List";
 import Order from "./Pages/Order/Order";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from "./Login/Login";
 
 var htmlRoot = document.getElementById("root");
 var rootReact = ReactDOM.createRoot(htmlRoot);
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/add" element={<Add/>} />
         <Route path="/list" element={<List/>} />
         <Route path="/order" element={<Order/>} />
+        <Route path="/login" element={<Login/>}/>
       </Routes>
       </div>
     </div>

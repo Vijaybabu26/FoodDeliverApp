@@ -23,6 +23,11 @@
     cursor: pointer;
 }
 
+.sidebaroption img{
+    height: 60px;
+    width: 60px;
+}
+
 @media(max-width:900px){
     .sidebar-option p{
         display: none;
