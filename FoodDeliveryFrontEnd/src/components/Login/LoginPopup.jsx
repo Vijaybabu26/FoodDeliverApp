@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
 import './LoginPopup.css'
+
 const LoginPopup = ({setshowlogin}) => {
 
     const[currstate,setcurrstate] = useState("Login")
@@ -16,7 +17,7 @@ const LoginPopup = ({setshowlogin}) => {
       setaddress(event.target.value);
     }
 
-    const handleSubmit = async (event) => {
+    const RegisterSubmit = async (event) => {
       event.preventDefault();
       const data = { userName, phoneNo, password, emailId, address };
       const response = await fetch('http://localhost:8080/api/user/registeruser', {
@@ -30,10 +31,23 @@ const LoginPopup = ({setshowlogin}) => {
       const result = await response.json();
       console.log(result);
   }
-  
+  const LoginSubmit = async (event) => {
+    event.preventDefault();
+    const data = {phoneNo, password};
+    const response = await fetch('http://localhost:8080/api/user/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+        
+    });
+    const result = await response.json();
+    console.log(result);
+}
   return (
     <div className='login-popup'>
-      <form action="" className="login-popup-container" onSubmit={handleSubmit}>
+      <form action="" className="login-popup-container" onSubmit={currstate === "Login" ? LoginSubmit : RegisterSubmit}>
         <div className="login-popup-title">
             <h2>{currstate}</h2>
             <img onClick={()=>setshowlogin(false)} src={assets.cross_icon} alt="" />
