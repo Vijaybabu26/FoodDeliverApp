@@ -22,7 +22,7 @@ public class Orders {
 	
 	@ManyToOne
 	@JoinColumn(name= "userId")
-	private User user;
+	private User userId;
 	
 	@ManyToOne
 	@JoinColumn(name= "resId")
@@ -45,16 +45,16 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "Orders [orderId=" + orderId + ", user=" + user + ", restaurant=" + restaurant + ", orderDate="
+		return "Orders [orderId=" + orderId + ", userId=" + userId + ", restaurant=" + restaurant + ", orderDate="
 				+ orderDate + ", amount=" + amount + ", deliveryAddress=" + deliveryAddress + ", status=" + status
 				+ ", deliveryTime=" + deliveryTime + "]";
 	}
 
-	public Orders(Integer orderId, User user, Restaurant restaurant, LocalDateTime orderDate, double amount,
+	public Orders(Integer orderId, User userId, Restaurant restaurant, LocalDateTime orderDate, double amount,
 			String deliveryAddress, String status, LocalDateTime deliveryTime) {
 		super();
 		this.orderId = orderId;
-		this.user = user;
+		this.userId = userId;
 		this.restaurant = restaurant;
 		this.orderDate = orderDate;
 		this.amount = amount;
@@ -76,12 +76,12 @@ public class Orders {
 		this.orderId = orderId;
 	}
 
-	public User getUser() {
-		return user;
+	public User getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	public Restaurant getRestaurant() {
@@ -131,7 +131,6 @@ public class Orders {
 	public void setDeliveryTime(LocalDateTime deliveryTime) {
 		this.deliveryTime = deliveryTime;
 	}
-	
-	
+
 	
 }

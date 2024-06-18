@@ -19,8 +19,8 @@ public class MenuService {
 		return menu.getItemName() + "Item Added SuccessFull";
 	}
 	
-//	public List<Menu> GetRestaurantMenu(Integer resId){
-//		List<Menu> menu = menurepo.findAllByresId(resId);
-//		return menu;
-//	}
+	public List<Menu> GetRestaurantMenu(Integer resId){
+		List<Menu> menu = menurepo.findByResId(resId);
+		return menu;
+	}
 }

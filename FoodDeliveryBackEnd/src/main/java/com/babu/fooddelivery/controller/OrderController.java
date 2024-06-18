@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.entity.Orders;
+import com.babu.fooddelivery.entity.User;
 import com.babu.fooddelivery.repository.OrderRepo;
 import com.babu.fooddelivery.service.OrderService;
 
@@ -51,24 +52,22 @@ public class OrderController {
 	    }
 	}
 	
-//	@GetMapping("/orderhistory")
-//	public ResponseEntity<List<Orders>> GetOrderHistory(@RequestBody Orders order){
-//		User user = order.getUser();
-//		List<Orders> orderhis = orderser.GetOrderHistory(user.getUserId());
-//		if(orderhis.isEmpty()) {
-//			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
-//		}
-//		return new ResponseEntity<>(orderhis, HttpStatus.OK);
-//	}
+
+
 	
-//	@GetMapping("/orderhistory/{userId}")
-//	public ResponseEntity<List<Orders>> getOrderHistory(@PathVariable Integer userId) {
-//	    String id = userId.toString();
-//		List<Orders> orderHistory = orderser.GetOrderHistory(Integer.parseInt(id));
-//	    if (orderHistory.isEmpty()) {
-//	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//	    }
-//	    return new ResponseEntity<>(orderHistory, HttpStatus.OK);
-//	}
+
+	
+	@GetMapping("/orderhistory")
+	public ResponseEntity<List<Orders>> getOrderHistory(@RequestBody Orders order) {
+	    User u = order.getUserId();
+	    List<Orders> orderhis = orderser.GetOrderHistory(u.getUserId());
+	    if(orderhis.isEmpty()) {
+	    	System.out.println("Not Found");
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+	    return new ResponseEntity<>(orderhis,HttpStatus.OK);
+	}
+
+
 
 }

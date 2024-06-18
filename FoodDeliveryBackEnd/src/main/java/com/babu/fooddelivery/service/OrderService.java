@@ -20,9 +20,9 @@ public class OrderService {
 		return order.getOrderId() + "Order Placed SuccessFull";
 	}
 	
-//	public List<Orders> GetOrderHistory(Integer id){
-//		List<Orders> order = orderrepo.findbyuserId(id);
-//		return order;
-//	}
+	public List<Orders> GetOrderHistory(Integer id){
+		List<Orders> order = orderrepo.findByUserId(id);
+		return order;
+	}
 	
 }

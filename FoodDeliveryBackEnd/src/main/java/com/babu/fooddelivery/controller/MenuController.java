@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.entity.Menu;
+import com.babu.fooddelivery.entity.Restaurant;
 import com.babu.fooddelivery.repository.MenuRepo;
 import com.babu.fooddelivery.service.MenuService;
 
@@ -78,25 +79,18 @@ public class MenuController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-//	@GetMapping("/restaurantmenu")
-//	public ResponseEntity<List<Menu>> getRestaurantMenu(@RequestBody Menu menu){
-//		Restaurant res = menu.getResId();
-//		List<Menu> menulist = menuser.GetRestaurantMenu(res.getResId());
-//		if(menulist.isEmpty()) {
-//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
-//		}
-//		return new ResponseEntity<>(menulist,HttpStatus.OK);	
-//	}
+	@GetMapping("/restaurantmenu")
+	public ResponseEntity<List<Menu>> getRestaurantMenu(@RequestBody Menu menu){
+		Restaurant res = menu.getResId();
+		List<Menu> menulist = menuser.GetRestaurantMenu(res.getResId());
+		if(menulist.isEmpty()) {
+			System.out.println("Not Found");
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
+			
+		}
+		
+		return new ResponseEntity<>(menulist,HttpStatus.OK);	
+	}
 	
-//	@GetMapping("/restaurantmenu/{restaurantId}")
-//	public ResponseEntity<List<Menu>> getRestaurantMenu(@PathVariable Integer restaurantId) {
-//		String id = restaurantId.toString();
-//	    List<Menu> menuList = menuser.GetRestaurantMenu(Integer.parseInt(id));
-//	    if (menuList.isEmpty()) {
-//	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//	    }
-//	    return new ResponseEntity<>(menuList, HttpStatus.OK);
-//	}
-
 	
 }
