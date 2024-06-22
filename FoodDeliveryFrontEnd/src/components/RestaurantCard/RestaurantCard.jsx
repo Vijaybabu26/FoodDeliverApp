@@ -1,31 +1,22 @@
 import React from 'react'
 import './RestaurantCard.css'
-import { assets } from '../../assets/assets'
 
 const RestaurantCard = () => {
   return (
     <div className='restaurantcard'>
         <div className='restaurantcard-details'>
-            <h1>Available Restaurants...</h1>
+            <h3>Available Restaurants...</h3>
+            {/* <Link to='/food'> */}
             <div className='restaurant-details'>
-                <div className='restaurant-image'>
-                <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chanwalrus-941861.jpg&fm=jpg" alt="" />
-                </div>
-                
-                <h3>Tomato Restaurant</h3>
-                <div className="food-item-info">
-                <div className='food-item-name-rating'>
-                    <img src={assets.rating_starts} alt=''/>
-                </div>
-                <p className="food-item-desc">
-                    Food Items Available In Our Restaurants
-                </p>
-                <p className="food-item-price">
-                    For Each Person : &#8377; 200
-                </p>
+            <img src='https://www.nrn.com/sites/nrn.com/files/styles/article_featured_retina/public/Mcd%20Drive%20Thru.jpg?itok=DeF7fayX'></img>
+            <h1>MC DONALD'S Restaurant</h1>     
+            <p>Review : 4.5 Stars</p> 
+            <p>Vizag</p>
+            <h1> &#8377; 200 For Each Person</h1>
             </div>
-            </div>
+            {/* </Link> */}
         </div>
+        
     </div>
   )
 }

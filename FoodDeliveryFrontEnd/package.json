@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.12.0",
     "process": "^0.11.10"
   },
@@ -10,6 +11,7 @@
     "abortcontroller-polyfill": "^1.7.5",
     "ansi-styles": "^4.3.0",
     "argparse": "^2.0.1",
+    "axios": "^1.7.2",
     "base-x": "^3.0.9",
     "boolbase": "^1.0.0",
     "braces": "^3.0.3",

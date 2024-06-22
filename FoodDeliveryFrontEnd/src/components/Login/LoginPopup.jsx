@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
-import { assets } from '../../assets/assets'
-import './LoginPopup.css'
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { assets } from '../../assets/assets';
+import './LoginPopup.css';
 
 const LoginPopup = ({setshowlogin}) => {
 
+  const Navigate = useNavigate();
+
     const[currstate,setcurrstate] = useState("Login")
+
 
     const[userName,setuserName] = useState("")
     const[phoneNo,setphoneNo] = useState("")
@@ -17,20 +22,34 @@ const LoginPopup = ({setshowlogin}) => {
       setaddress(event.target.value);
     }
 
-    const RegisterSubmit = async (event) => {
-      event.preventDefault();
-      const data = { userName, phoneNo, password, emailId, address };
-      const response = await fetch('http://localhost:8080/api/user/registeruser', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-          
+  const RegisterSubmit = async (event) => {
+    event.preventDefault();
+  
+    const data = { userName, phoneNo, password, emailId, address };
+  
+    try {
+      const response = await axios.post('http://localhost:8080/api/user/registeruser', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
-      const result = await response.json();
-      console.log(result);
-  }
+  
+      console.log(response.data); // Assuming response.data is the JSON object returned by the server
+  
+      if (response.data.userExists) {
+        setRegistrationMessage("User already exists. Please choose a different username or log in.");
+      } else {
+        alert("User Registration Success");
+        Navigate('/'); 
+      }
+    } catch (error) {
+      console.error('Error registering user:', error);
+      // Handle error as needed
+    }
+  };
+  
+
+
   const LoginSubmit = async (event) => {
     event.preventDefault();
     const data = {phoneNo, password};
@@ -43,8 +62,14 @@ const LoginPopup = ({setshowlogin}) => {
         
     });
     const result = await response.json();
+    alert("User Login Success");
+        Navigate('/'); 
     console.log(result);
 }
+// function redirect() {
+//   window.location.href = "/"; // Replace "/" with the desired URL
+//         }
+
   return (
     <div className='login-popup'>
       <form action="" className="login-popup-container" onSubmit={currstate === "Login" ? LoginSubmit : RegisterSubmit}>
@@ -69,7 +94,7 @@ const LoginPopup = ({setshowlogin}) => {
             <input type='password' placeholder='Password' required value={password}
           onChange={(e) => setpassword(e.target.value) }/>
         </div>
-        <button>{currstate==="Sign Up"?"Create Account":"Login"}</button>
+        <button><span onClick={()=>setshowlogin(false)}></span>{currstate==="Sign Up"?"Create Account":"Login"}</button>
         <div className="login-popup-condition">
             <input type='checkbox' required/>
             <p>By Continuing, I Agree To The Terms Of use & Privacy Policy.</p>
@@ -79,7 +104,7 @@ const LoginPopup = ({setshowlogin}) => {
         :<p>Already have An Account? <span onClick={()=> setcurrstate("Login")}>Login Here</span></p>
         }
       </form>
-    </div>
+     </div>
   )
   
 }
