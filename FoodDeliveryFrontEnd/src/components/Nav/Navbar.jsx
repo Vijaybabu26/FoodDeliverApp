@@ -17,7 +17,7 @@ const{getTotalCartAmount} = useContext(StoreContext)
           <Link to='/'><img src="https://png.pngtree.com/template/20191014/ourmid/pngtree-pin-food-delivery-map-location-delivery-logo-concept-image_318151.jpg" alt="" className="logo" /></Link>
           <ul className="navbar-menu">
           <Link to='/' onClick={() => setmenu("home")} className={menu === "home" ? "active" : ""}><li>HOME</li></Link>
-              <li onClick={() => setmenu("menu")} className={menu === "menu" ? "active" : ""} >MENU</li>
+              <Link to="/food" onClick={() => setmenu("menu")} className={menu === "menu" ? "active" : ""} ><li>MENU</li></Link>
                 <li onClick={() => setmenu("Mobile")} className={menu === "Mobile" ? "active" : ""}>MOBILE</li>
                 {/* <li onClick={() => setmenu("Register")} className={menu === "Register" ? "active" : ""}>REGISTER</li> */}
                 {/* <li onClick={() => setmenu("SignIn")} className={menu === "SignIn" ? "active" : ""}>SIGN IN</li> */}
