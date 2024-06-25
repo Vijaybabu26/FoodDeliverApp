@@ -1,0 +1,41 @@
+{
+    "userId": 123,
+    "userName": "John Doe",
+    "password": "secretpassword",
+    "emailId": "john.doe@example.com",
+    "phoneNo": "+1 123-456-7890",
+    "address": "123 Main St, City",
+    "registrationDate": "2024-06-01T10:00:00"
+}
+
+{
+    "resId": 1,
+    "resName": "Delicious Bies",
+    "resPhoneNo": "+1 123-456-7890",
+    "resPassword": "secretpassword",
+    "resDescription": "A cozy restaurant serving mouthwatering dishes.",
+    "resAddress": "456 Main Street, City",
+    "resOperationHours": "Mon-Sat: 10:00 AM - 9:00 PM",
+    "resAvgRating": 4.5,
+    "resDelievryFee": 5.99,
+    "resImage": "https://example.com/restaurant-image.jpg"
+}
+
+{
+    "itemId": 123,
+    "resId": {
+        "resId": 1
+    },
+    "itemName": "Spicy Chicken Sandwich",
+    "itemDescription": "Grilled chicken sandwich with a kick!",
+    "price": 8.99,
+    "category": "Sandwiches",
+    "availabilty": true,
+    "itemImage": "https://example.com/chicken-sandwich.jpg"
+}
+
+{
+    "restaurant": {
+        "restaurant": 1
+    }
+}
