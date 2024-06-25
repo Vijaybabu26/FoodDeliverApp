@@ -46,6 +46,32 @@ public class RestaurantController {
 	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration Failed due to invalid data.");
 	}
 	
+
+	@PostMapping("/updaterestaurant")
+	public ResponseEntity<String> updateRestaurant(@RequestBody Restaurant res){
+		Optional<Restaurant> existingRestaurant = resrepo.findById(res.getResId());
+		if(existingRestaurant.isPresent()) {
+			Restaurant ures = existingRestaurant.get();
+			ures.setResId(ures.getResId());
+			ures.setResName(res.getResName());
+			ures.setResPhoneNo(res.getResPhoneNo());
+			ures.setResAddress(res.getResAddress());
+			ures.setResAvgRating(res.getResAvgRating());
+			ures.setResDelievryFee(res.getResDelievryFee());
+			ures.setResDescription(res.getResDescription());
+			ures.setResImage(res.getResImage());
+			ures.setResOperationHours(res.getResOperationHours());
+			ures.setResPassword(res.getResPassword());
+			resrepo.save(ures);
+			String message = "Restaurant Details Updated Successfully";
+	        System.out.println(ures);
+	        return ResponseEntity.status(HttpStatus.OK).body(ures.getResName() + " " + message);
+		}else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Restaurant Details Not Updated");
+		}
+	}
+	
+	
 	@PostMapping("/login")
 	public ResponseEntity<String> loginRestaurant(@RequestBody Restaurant loginres){
 		String resPhoneNo = loginres.getResPhoneNo();

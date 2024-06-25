@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.babu.fooddelivery.entity.User;
 import com.babu.fooddelivery.repository.UserRepo;
 import com.babu.fooddelivery.service.UserService;
@@ -52,8 +51,30 @@ public class UserController {
 	    }
 	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration Failed due to invalid data.");
 	}
+	
 
 	
+	@PostMapping("/updateuser")
+	public ResponseEntity<String> updateUser(@RequestBody User user) {
+	    Optional<User> existingUser = userrepo.findById(user.getUserId());
+	    
+	    if (existingUser.isPresent()) {
+	        User uuser = existingUser.get();
+	        uuser.setUserId(uuser.getUserId());
+	        uuser.setUserName(user.getUserName());
+	        uuser.setEmailId(user.getEmailId());
+	        uuser.setPassword(user.getPassword());
+	        uuser.setPhoneNo(user.getPhoneNo());
+	        uuser.setAddress(user.getAddress());
+	        userrepo.save(uuser);
+	        
+	        String message = "User Details Updated Successfully";
+	        System.out.println(uuser);
+	        return ResponseEntity.status(HttpStatus.OK).body(user.getUserName() + " " + message);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User Details Not Updated");
+	    }
+	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {

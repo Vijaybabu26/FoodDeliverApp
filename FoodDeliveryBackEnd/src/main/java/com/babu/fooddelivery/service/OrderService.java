@@ -25,4 +25,8 @@ public class OrderService {
 		return order;
 	}
 	
+	public List<Orders> GetResOrders(Integer id){
+		List<Orders> order = orderrepo.findByResId(id);
+		return order;
+	}
 }

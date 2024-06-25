@@ -45,7 +45,7 @@ public class CartController {
 				return ResponseEntity.status(HttpStatus.CREATED).body(cart.getItemId() + " " + message);
 			}
 		}
-		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Item Adding Failed due to invalid data.");
+		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Item Adding To Cart Failed due to invalid data.");
 	}
 	
 	@PostMapping("/removefromcart/{orderItemId}")

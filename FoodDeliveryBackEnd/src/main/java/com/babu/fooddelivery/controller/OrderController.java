@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babu.fooddelivery.entity.Orders;
+import com.babu.fooddelivery.entity.Restaurant;
 import com.babu.fooddelivery.entity.User;
 import com.babu.fooddelivery.repository.OrderRepo;
 import com.babu.fooddelivery.service.OrderService;
@@ -53,8 +54,18 @@ public class OrderController {
 	}
 	
 
-
-	
+	@PostMapping("/updateorderstatus")
+	public ResponseEntity<String> updateOrderStatus(@RequestBody Orders order) {
+	    Optional<Orders> existingOrder = orderrepo.findById(order.getOrderId());
+	    if (existingOrder.isPresent()) {
+	        Orders ord = existingOrder.get();
+	        ord.setStatus(order.getStatus()); // Set the new status
+	        orderrepo.save(ord); // Save the updated order
+	        String message = "Order Status Edited Successfully for order ID: " + ord.getOrderId();
+	        return ResponseEntity.status(HttpStatus.OK).body(message);
+	    }
+	    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order Status Not Updated");
+	}
 
 	
 	@GetMapping("/orderhistory")
@@ -67,7 +78,17 @@ public class OrderController {
 	    }
 	    return new ResponseEntity<>(orderhis,HttpStatus.OK);
 	}
-
+	
+	@GetMapping("/restaurantOrder")
+	public ResponseEntity<List<Orders>> getRestaurantOrder(@RequestBody Orders order){
+		Restaurant res = order.getRestaurant();
+		List<Orders> orders = orderser.GetResOrders(res.getResId());
+		if(orders.isEmpty()) {
+			System.out.println("Not Found");
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(orders,HttpStatus.OK);
+	}
 
 
 }
