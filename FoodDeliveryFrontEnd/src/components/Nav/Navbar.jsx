@@ -4,8 +4,8 @@ import { StoreContext } from '../../Context/StoreContext';
 import { assets } from '../../assets/assets';
 import './Navbar.css';
 
-const Navbar = ({setshowlogin}) => {
-
+const Navbar = () => {
+  // {setshowlogin}
 const [menu,setmenu] = useState("home");
 
 const{getTotalCartAmount} = useContext(StoreContext)
@@ -29,8 +29,9 @@ const{getTotalCartAmount} = useContext(StoreContext)
               <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                   <div className={getTotalCartAmount()===0?"":"dot"}></div>
               </div>
-              <button onClick={()=>setshowlogin(true)}>SIGN IN</button>
-             
+              <button ><Link to='/login'>SIGN IN</Link></button>
+              {/* onClick={()=>setshowlogin(true)} */}
+              <li></li>
           </div>
     </div>
     </>

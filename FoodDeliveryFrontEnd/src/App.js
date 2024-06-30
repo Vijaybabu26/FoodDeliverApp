@@ -10,7 +10,6 @@ import FoodDisplay from "./components/FoodDisplay/FoodDisplay";
 import Footer from "./components/Footer/Footer";
 import LoginPopup from "./components/Login/LoginPopup";
 import Navbar from "./components/Nav/Navbar";
-import FoodDisplay from "./components/FoodDisplay/FoodDisplay";
 
 var htmlRoot = document.getElementById("root");
 var rootReact = ReactDOM.createRoot(htmlRoot);
@@ -31,6 +30,7 @@ const App = () =>{
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/order" element={<PlaceOrder/>}/>
         <Route path="/food" element={<><ExploreMenu category={category} setcategory={setcategory} /><FoodDisplay category={category} /></>}/>
+        <Route path="/login" element={<LoginPopup/>}/>
        </Routes>
     </div>
     <Footer/>

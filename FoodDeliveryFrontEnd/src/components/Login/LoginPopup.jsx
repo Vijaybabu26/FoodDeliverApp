@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import './LoginPopup.css';
 
-const LoginPopup = ({setshowlogin}) => {
-
+const LoginPopup = () => {
+  
   const Navigate = useNavigate();
 
     const[currstate,setcurrstate] = useState("Login")
@@ -22,6 +22,32 @@ const LoginPopup = ({setshowlogin}) => {
       setaddress(event.target.value);
     }
 
+  // const RegisterSubmit = async (event) => {
+  //   event.preventDefault();
+  
+  //   const data = { userName, phoneNo, password, emailId, address };
+  
+  //   try {
+  //     const response = await axios.post('http://localhost:8080/api/user/registeruser', data, {
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     });
+  
+  //     console.log(response.data); 
+  
+  //     if (response.data.userExists) {
+  //       setRegistrationMessage("User already exists. Please choose a different username or log in.");
+  //     } else {
+  //       alert("User Registration Success");
+  //       Navigate('/'); 
+  //     }
+  //   } catch (error) {
+  //     console.error('Error registering user:', error);
+  //     // Handle error as needed
+  //   }
+  // };
+
   const RegisterSubmit = async (event) => {
     event.preventDefault();
   
@@ -34,38 +60,51 @@ const LoginPopup = ({setshowlogin}) => {
         }
       });
   
-      console.log(response.data); // Assuming response.data is the JSON object returned by the server
+      console.log(response.data);
   
-      if (response.data.userExists) {
+      if (response.data) {
         setRegistrationMessage("User already exists. Please choose a different username or log in.");
       } else {
         alert("User Registration Success");
-        Navigate('/'); 
+        Navigate('/'); // Corrected function name
       }
     } catch (error) {
       console.error('Error registering user:', error);
-      // Handle error as needed
+      // Handle error as needed (e.g., display an error message)
     }
   };
   
-
-
   const LoginSubmit = async (event) => {
     event.preventDefault();
-    const data = {phoneNo, password};
-    const response = await fetch('http://localhost:8080/api/user/login', {
-        method: 'POST',
+    const data = { phoneNo, password };
+  
+    try {
+      const response = await axios.post('http://localhost:8080/api/user/login', data, {
         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-        
-    });
-    const result = await response.json();
-    alert("User Login Success");
-        Navigate('/'); 
-    console.log(result);
-}
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      const result = response.data;
+  
+      if (result) {
+        alert("User Login Success");
+        Navigate('/');
+        console.log(result);
+        console.log(result?.match(/userName=([^,]+)/)?.[1]);
+
+      } else {
+        alert("Login failed. Please check your credentials.");
+        Navigate('/login');
+      }
+    } catch (error) {
+      alert("User Login Failed");
+      console.error('Error logging in:', error);
+      // Handle error as needed (e.g., display an error message)
+    }
+  };
+
+  
 // function redirect() {
 //   window.location.href = "/"; // Replace "/" with the desired URL
 //         }
@@ -75,7 +114,8 @@ const LoginPopup = ({setshowlogin}) => {
       <form action="" className="login-popup-container" onSubmit={currstate === "Login" ? LoginSubmit : RegisterSubmit}>
         <div className="login-popup-title">
             <h2>{currstate}</h2>
-            <img onClick={()=>setshowlogin(false)} src={assets.cross_icon} alt="" />
+            <Link to="/"><img src={assets.cross_icon} alt=""/></Link>
+         
         </div>
         <div className="login-popup-input">
             {currstate==="Login"?<></>
