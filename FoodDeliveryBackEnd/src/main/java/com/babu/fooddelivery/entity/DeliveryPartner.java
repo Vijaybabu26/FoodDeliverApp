@@ -22,35 +22,47 @@ public class DeliveryPartner {
 	@Column(name = "demailId")
 	private String demailId;
 	
-	@Column(name = "dphoneNo")
+	@Column(name = "dphoneNo",unique = true)
 	private String dphoneNo;
 	
+	@Column(name = "dpassword")
+	private String password;
+		
 	@Column(name = "vehicaltype")
 	private String vehicletype;
 	
 	@Column(name = "currlocation")
 	private String currlocation;
-
+	
 	@Override
 	public String toString() {
 		return "DeliveryPartner [deliveryPartnerId=" + deliveryPartnerId + ", dname=" + dname + ", demailId=" + demailId
-				+ ", dphoneNo=" + dphoneNo + ", vehicletype=" + vehicletype + ", currlocation=" + currlocation + "]";
+				+ ", dphoneNo=" + dphoneNo + ", password=" + password + ", vehicletype=" + vehicletype
+				+ ", currlocation=" + currlocation + "]";
+	}
+	
+	
+
+	public DeliveryPartner() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public DeliveryPartner(Integer deliveryPartnerId, String dname, String demailId, String dphoneNo,
+
+
+	public DeliveryPartner(Integer deliveryPartnerId, String dname, String demailId, String dphoneNo, String password,
 			String vehicletype, String currlocation) {
 		super();
 		this.deliveryPartnerId = deliveryPartnerId;
 		this.dname = dname;
 		this.demailId = demailId;
 		this.dphoneNo = dphoneNo;
+		this.password = password;
 		this.vehicletype = vehicletype;
 		this.currlocation = currlocation;
 	}
 
-	public DeliveryPartner() {
-		super();
-	}
+
 
 	public Integer getDeliveryPartnerId() {
 		return deliveryPartnerId;
@@ -84,6 +96,14 @@ public class DeliveryPartner {
 		this.dphoneNo = dphoneNo;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getVehicletype() {
 		return vehicletype;
 	}
@@ -99,8 +119,9 @@ public class DeliveryPartner {
 	public void setCurrlocation(String currlocation) {
 		this.currlocation = currlocation;
 	}
+
 	
 	
 	
 	
-}
+	}

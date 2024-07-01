@@ -34,6 +34,6 @@ public class UserService {
 	
 	 
 	   public Optional<User> getUserDetails(String phoneNo) {
-		   return this.userrepo.findByPhoneNo(phoneNo);
+		   return userrepo.findByPhoneNo(phoneNo);
 	   }
 }

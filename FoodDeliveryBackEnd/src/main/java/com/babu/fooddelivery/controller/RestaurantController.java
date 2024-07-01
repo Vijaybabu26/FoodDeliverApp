@@ -37,8 +37,7 @@ public class RestaurantController {
 	    Optional<Restaurant> existingRestaurant = resrepo.findByresPhoneNo(resPhoneNo);
 	    if (existingRestaurant.isPresent()) {
 	        return ResponseEntity.status(HttpStatus.CONFLICT).body("Restaurant with phone number " + resPhoneNo + " already exists.");
-	    } else
-	    	if (resser.RegisterRestaurant(res) != null) {
+	    } else if (resser.RegisterRestaurant(res) != null) {
 	        String message = "Registration Successful";
 	        System.out.println(res);
 	        return ResponseEntity.status(HttpStatus.CREATED).body(res.getResName() + " " + message);
