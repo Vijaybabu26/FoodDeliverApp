@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../../Context/StoreContext';
 import { assets } from '../../assets/assets';
@@ -7,10 +7,16 @@ import './Navbar.css';
 const Navbar = () => {
   // {setshowlogin}
 const [menu,setmenu] = useState("home");
+const [userName,setuserName] = useState("USER HAS TO LOG IN");
+const{getTotalCartAmount} = useContext(StoreContext);
 
-const{getTotalCartAmount} = useContext(StoreContext)
+useEffect(()=>{
+  const storedUserName = localStorage.getItem('userName');
+  setuserName(storedUserName);
+},[])
 
   return (
+    
     <>
     <div className='navbar'>
           {/* <img src={assets.logo} alt="" className="logo" /> */}
@@ -31,7 +37,7 @@ const{getTotalCartAmount} = useContext(StoreContext)
               </div>
               <button ><Link to='/login'>SIGN IN</Link></button>
               {/* onClick={()=>setshowlogin(true)} */}
-              <li></li>
+              <h2>Hi, {userName}</h2>
           </div>
     </div>
     </>

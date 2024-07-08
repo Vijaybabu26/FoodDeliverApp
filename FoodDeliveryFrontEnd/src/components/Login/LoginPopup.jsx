@@ -50,59 +50,98 @@ const LoginPopup = () => {
 
   const RegisterSubmit = async (event) => {
     event.preventDefault();
-  
+
     const data = { userName, phoneNo, password, emailId, address };
-  
+
     try {
-      const response = await axios.post('http://localhost:8080/api/user/registeruser', data, {
-        headers: {
-          'Content-Type': 'application/json'
+        const response = await axios.post('http://localhost:8080/api/user/registeruser', data, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        console.log(response.data);
+
+        if (response.data) {
+            // Corrected the method name: It should be `setItem` instead of `set`
+            alert('Register Sucess');
+            localStorage.setItem('registrationMessage', "User already exists. Please choose a different username or log in.");
+        } else {
+            alert("User Registration Success");
+            // Corrected the function name: It should be `navigate` instead of `Navigate`
+            Navigate('/');
         }
-      });
-  
-      console.log(response.data);
-  
-      if (response.data) {
-        setRegistrationMessage("User already exists. Please choose a different username or log in.");
-      } else {
-        alert("User Registration Success");
-        Navigate('/'); // Corrected function name
-      }
     } catch (error) {
-      console.error('Error registering user:', error);
-      // Handle error as needed (e.g., display an error message)
+        console.error('Error registering user:', error);
+        // Handle error as needed (e.g., display an error message)
     }
-  };
+};
   
+  // const LoginSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const data = { phoneNo, password };
+  
+  //   try {
+  //     const response = await axios.post('http://localhost:8080/api/user/login', data, {
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     });
+  
+  //     const result = response.data;
+  
+  //     if (result) {
+  //       alert("User Login Success");
+  //       Navigate('/');
+  //       console.log(result);
+       
+
+  //     } else {
+  //       alert("Login failed. Please check your credentials.");
+  //       Navigate('/login');
+  //     }
+  //   } catch (error) {
+  //     alert("User Login Failed");
+  //     console.error('Error logging in:', error);
+  //     // Handle error as needed (e.g., display an error message)
+  //   }
+  // };
   const LoginSubmit = async (event) => {
     event.preventDefault();
     const data = { phoneNo, password };
-  
-    try {
-      const response = await axios.post('http://localhost:8080/api/user/login', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-  
-      const result = response.data;
-  
-      if (result) {
-        alert("User Login Success");
-        Navigate('/');
-        console.log(result);
-        console.log(result?.match(/userName=([^,]+)/)?.[1]);
 
-      } else {
-        alert("Login failed. Please check your credentials.");
-        Navigate('/login');
-      }
+    try {
+        const response = await axios.post('http://localhost:8080/api/user/login', data, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = response.data;
+
+        if (result) {
+            alert("User Login Success");
+            // Correct the typo: It should be 'Navigate' instead of 'Navigate'
+            localStorage.setItem('userphoneno',response.data.phoneNo);
+            localStorage.setItem('userId',response.data.userId);
+            localStorage.setItem('password',response.data.password);
+            localStorage.setItem('emailId',response.data.emailId);
+            localStorage.setItem('userName',response.data.userName);
+            localStorage.setItem('address',response.data.address)
+            console.log(localStorage.getItem('userphoneno'),localStorage.getItem('userName'),localStorage.getItem('emailId'),localStorage.getItem('password'));
+            Navigate('/');
+            console.log(result);
+        } else {
+            alert("Login failed. Please check your credentials.");
+            // Correct the typo: It should be 'navigate' instead of 'Navigate'
+            Navigate('/login');
+        }
     } catch (error) {
-      alert("User Login Failed");
-      console.error('Error logging in:', error);
-      // Handle error as needed (e.g., display an error message)
+        alert("User Login Failed");
+        console.error('Error logging in:', error);
+        // Handle error as needed (e.g., display an error message)
     }
-  };
+};
 
   
 // function redirect() {
