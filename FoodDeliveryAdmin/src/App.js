@@ -1,23 +1,34 @@
+import React, { useEffect, useState } from 'react';
 import ReactDOM from "react-dom/client";
-import React from 'react'
-import Navbar from "./Components/Navbar/navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Navbar from "./Components/Navbar/navbar";
 import Sidebar from "./Components/Sidebar/sidebar";
+import Login from "./Login/Login";
 import Add from "./Pages/Add/Add";
 import List from "./Pages/List/List";
 import Order from "./Pages/Order/Order";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Login from "./Login/Login";
 
 var htmlRoot = document.getElementById("root");
 var rootReact = ReactDOM.createRoot(htmlRoot);
 
+
+
 const App = () => {
+  const [resname,setresname] = useState("")
+  useEffect(()=>{
+    const ResName = localStorage.getItem('resName');
+    setresname(ResName);
+    
+  },[])
   return (
     <div className='Admin'>
       <ToastContainer/>
       <Navbar/>
+      <h2 style={{ textAlign: 'center' }}>Welcome, {resname}</h2>
+      <h3 style={{ textAlign: 'center' }}>Add More Products To Increase Your Sales</h3>
+
       <hr/>
       <div className="app-content">
       <Sidebar/>
