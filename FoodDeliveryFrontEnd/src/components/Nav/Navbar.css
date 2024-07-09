@@ -35,6 +35,10 @@
     transition: 0.3s;
 }
 
+.navbar button Link{
+    text-decoration: none;
+}
+
 .navbar button:hover{
     background-color: red;
 }

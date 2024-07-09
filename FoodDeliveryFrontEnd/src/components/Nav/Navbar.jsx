@@ -35,7 +35,7 @@ useEffect(()=>{
               <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                   <div className={getTotalCartAmount()===0?"":"dot"}></div>
               </div>
-              <button ><Link to='/login'>SIGN IN</Link></button>
+              <button><Link to='/login'>SIGN IN</Link></button>
               {/* onClick={()=>setshowlogin(true)} */}
               <h2>Hi, {userName}</h2>
           </div>

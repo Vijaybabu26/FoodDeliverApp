@@ -1,7 +1,8 @@
-import React from 'react'
-import './RestaurantCard.css'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './RestaurantCard.css';
 const RestaurantCard = () => {
+
   return (
     <div className='restaurantcard'>
         <div className='restaurantcard-details'>

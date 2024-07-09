@@ -63,10 +63,6 @@ const LoginPopup = () => {
         console.log(response.data);
 
         if (response.data) {
-            // Corrected the method name: It should be `setItem` instead of `set`
-            alert('Register Sucess');
-            localStorage.setItem('registrationMessage', "User already exists. Please choose a different username or log in.");
-        } else {
             alert("User Registration Success");
             // Corrected the function name: It should be `navigate` instead of `Navigate`
             Navigate('/');
@@ -129,7 +125,8 @@ const LoginPopup = () => {
             localStorage.setItem('userName',response.data.userName);
             localStorage.setItem('address',response.data.address)
             console.log(localStorage.getItem('userphoneno'),localStorage.getItem('userName'),localStorage.getItem('emailId'),localStorage.getItem('password'));
-            Navigate('/');
+            // Navigate('/');
+            window.location.href='/';
             console.log(result);
         } else {
             alert("Login failed. Please check your credentials.");
