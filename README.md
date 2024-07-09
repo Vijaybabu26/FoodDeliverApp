@@ -2,7 +2,7 @@ Project Plan PDF : https://docs.google.com/document/d/1YiVuDbw1zmmZY2-thNgeMw1fY
 
 
 
-Frontend 1)npm install 2)npm run dev -->react start
+Frontend 1)npm install 2)npx parcel index.html
 
 Backend 1)Run as -->maven build-->goals : spring-boot:run
 
