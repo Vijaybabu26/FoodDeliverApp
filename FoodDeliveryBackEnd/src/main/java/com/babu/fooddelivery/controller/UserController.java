@@ -4,7 +4,6 @@ package com.babu.fooddelivery.controller;
 
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -77,25 +76,29 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
-		String phoneNo = loginRequest.getPhoneNo();
-		String password = loginRequest.getPassword();
-		Optional<User> user = userser.getUserDetails(phoneNo);
-		User user1 = user.get();
-		String passworde = user1.getPassword();
-		if(user.isPresent()) {
-			 if(password.equals(passworde)) {
-				 System.out.println("Login S");
-				 
-				 UUID uuid = UUID.randomUUID();
-				 String Token = (uuid.toString()).toUpperCase();
-				return ResponseEntity.ok("Login successful!" +" " + loginRequest.getPhoneNo()+" " + user1.getEmailId() +" "+Token);
-			 
-			 }
-			}
-		System.out.println("Login f");
-		 return ResponseEntity.ok("Login Failed");
+	public ResponseEntity<User> loginUser(@RequestBody User loginRequest) {
+	    String phoneNo = loginRequest.getPhoneNo();
+	    String password = loginRequest.getPassword();
+	    Optional<User> user = userser.getUserDetails(phoneNo);
+
+	    if (user.isPresent()) {
+	        User user1 = user.get();
+	        String storedPassword = user1.getPassword();
+
+	        if (password.equals(storedPassword)) {
+	            System.out.println("Login Successful");
+	            // You can generate and return an authentication token here if needed
+	            return ResponseEntity.ok(user1);
+	        } else {
+	            System.out.println("Incorrect password");
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	        }
+	    } else {
+	        System.out.println("User not found");
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
 	}
+
 	
 	@GetMapping("/getuserdetails/{phoneNo}")
 	public ResponseEntity<User> retrieveUserDetails(@PathVariable("phoneNo") String phoneNo) {

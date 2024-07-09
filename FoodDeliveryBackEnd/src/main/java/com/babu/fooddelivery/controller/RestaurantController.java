@@ -2,7 +2,7 @@ package com.babu.fooddelivery.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,27 +70,57 @@ public class RestaurantController {
 		}
 	}
 	
+//	
+//	@PostMapping("/login")
+//	public ResponseEntity<Restaurant> loginRestaurant(@RequestBody Restaurant loginres){
+//		String resPhoneNo = loginres.getResPhoneNo();
+//		String resPassword = loginres.getResPassword();
+//		Optional<Restaurant> res = resser.GetResDetailsByPhNo(resPhoneNo);
+//		Restaurant restaurant = res.get();
+//		String respassworde = restaurant.getResPassword();
+//		if(res.isPresent()) {
+//			if(resPassword.equals(respassworde)) {
+//				System.out.println("Login S");
+//				 
+//				 UUID uuid = UUID.randomUUID();
+//				 String Token = (uuid.toString()).toUpperCase();
+//				return ResponseEntity.ok("Login successful!" +" " + loginres.getResPhoneNo()+" " + restaurant.getResName() +" "+Token);
+//			 
+//			}
+//		}
+//		System.out.println("Login f");
+//		 return ResponseEntity.ok("Login Failed");
+//	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> loginRestaurant(@RequestBody Restaurant loginres){
-		String resPhoneNo = loginres.getResPhoneNo();
-		String resPassword = loginres.getResPassword();
-		Optional<Restaurant> res = resser.GetResDetailsByPhNo(resPhoneNo);
-		Restaurant restaurant = res.get();
-		String respassworde = restaurant.getResPassword();
-		if(res.isPresent()) {
-			if(resPassword.equals(respassworde)) {
-				System.out.println("Login S");
-				 
-				 UUID uuid = UUID.randomUUID();
-				 String Token = (uuid.toString()).toUpperCase();
-				return ResponseEntity.ok("Login successful!" +" " + loginres.getResPhoneNo()+" " + restaurant.getResName() +" "+Token);
-			 
-			}
-		}
-		System.out.println("Login f");
-		 return ResponseEntity.ok("Login Failed");
+	public ResponseEntity<Restaurant> loginRestaurant(@RequestBody Restaurant loginres) {
+	    String resPhoneNo = loginres.getResPhoneNo();
+	    String resPassword = loginres.getResPassword();
+	    Optional<Restaurant> res = resser.GetResDetailsByPhNo(resPhoneNo);
+
+	    if (res.isPresent()) {
+	        Restaurant restaurant = res.get();
+	        String storedPassword = restaurant.getResPassword();
+
+	        if (resPassword.equals(storedPassword)) {
+	            System.out.println("Login Successful");
+
+	            // Generate and return an authentication token (if needed)
+//	            UUID uuid = UUID.randomUUID();
+//	            String Token = uuid.toString().toUpperCase();
+//	            restaurant.setAuthToken(Token);
+
+	            return ResponseEntity.ok(restaurant);
+	        } else {
+	            System.out.println("Incorrect password");
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	        }
+	    } else {
+	        System.out.println("Restaurant not found");
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
 	}
+
 	
 	@GetMapping("/restaurantlist")
 	public ResponseEntity<List<Restaurant>> GetAllRestaurant(){
