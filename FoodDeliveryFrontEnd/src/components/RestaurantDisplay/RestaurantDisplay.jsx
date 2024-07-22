@@ -24,7 +24,7 @@ const RestaurantDisplay = () => {
     <div className='food-display' id='food-display'>
         <h2>Top Restaurants Near You</h2><br></br>
         <div className="food-display-list">
-           <RestaurantCard/>
+           {/* <RestaurantCard/> */}
            <div className="res-container">
             {listofrestaurant.map((restaurant) => (
               <ResCard key={restaurant.resId} resinfo={restaurant}/>
