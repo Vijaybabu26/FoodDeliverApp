@@ -1,98 +1,92 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
+import axios from 'axios';
 import './Add.css';
+
 const Add = () => {
+    const [itemName, setItemName] = useState("");
+    const [itemImage, setItemImage] = useState("");
+    const [itemDescription, setItemDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [availability, setAvailability] = useState(true); 
+    const [category, setCategory] = useState("");
+    const [resId,setresId] = useState(0);
 
-    // const[image,setimage]  = useState(false)
+    // const restaurantId = localStorage.getItem('resId');
+    const restaurantId = parseInt(localStorage.getItem('resId'), 10);
+    console.log(restaurantId);
+    
+    
+    const AddProduct = async (event) => {
+        event.preventDefault();
+        setresId(restaurantId);
+        const data = {
+            itemName,
+            itemImage,
+            itemDescription,
+            price,
+            resId: { resId: restaurantId },
+            availability,
+            category
+        };
 
-    const[data,setdata] = useState({
-        name:"",
-        description:"",
-        price:"",
-        category:""
-    })
+        try {
+            const response = await axios.post('http://localhost:8080/api/menu/additem', data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-    const onchangehandler = (event) =>{
-        const name = event.target.name;
-        const value = event.target.value;
-        setdata(data=>({...data,[name]:value}))
-    }
+            console.log(response.data);
 
-    // const onSubmitHandler = async (event) =>{
-    //     event.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append("name",data.name)
-    //     formData.append("description",data.description)
-    //     formData.append("price",Number(data.price))
-    //     formData.append("category",data.category)
-    //     formData.append("image",image)
-    //     // const response = 
-    //     if(response.data.success){
-    //         setdata({
-    //             name:"",
-    //             description:"",
-    //             price:"",
-    //             category:{onchangehandler}
-    //         })
-    //     }else{
-    //         setimage(false)
-    //     }
-    // }
+            if (response.data) {
+                alert("Product Adding Success");
+                // Navigate('/list');
+                window.location.href = '/list';
+            }
+        } catch (error) {
+            console.error('Error adding product:', error);
+           
+        }
+    };
 
-    useEffect(()=>{
-        console.log(data);
-    },[data])
-
-  return (
-    <div className='add'>
-        <form action="" className="flex-col">
-            {/* <div className="add-img-upload flex-col">
-                <p>Upload Image</p>
-                <label htmlFor='image'>
-                    <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt=''/>
-                </label>
-                <input onChange={(event) => setimage(event.target.files[0])} type='file' id='image' hidden required/>
-            </div> */}
-            <div className="add-product-name flex-col">
-                <p>Product Image Url</p>
-                <input onChange={onchangehandler} value={data.name} type='text' name='image' placeholder='type here'/>
-            </div>
-            <div className="add-product-name flex-col">
-                <p>Product Name</p>
-                <input onChange={onchangehandler} value={data.name} type='text' name='name' placeholder='type here'/>
-            </div>
-            <div className="add-product-description flex-col">
-                <p>Description</p>
-                <textarea onChange={onchangehandler} value={data.description} name='description' rows="6" placeholder='Write Content Here'></textarea>
-            </div>
-            <div className="add-category-price">
-                {/* <div className="add-category flex-col">
-                    <p>Product Category</p>
-                    <select onChange={onchangehandler} value={data.price}name='category'>
-                        <option value="Salad">Salad</option>
-                        <option value="Rolls">Rolls</option>
-                        <option value="Deserts">Deserts</option>
-                        <option value="Sandwich">Sandwich</option>
-                        <option value="Cake">Cake</option>
-                        <option value="Pure Veg">Pure Veg</option>
-                        <option value="Pasta">Pasta</option>
-                        <option value="Noodles">Noodles</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div> */}
+    return (
+        <div className='add'>
+            <form className="flex-col" onSubmit={AddProduct}>
                 <div className="add-product-name flex-col">
-                <p>Product Category</p>
-                <input onChange={onchangehandler} value={data.name} type='text' name='name' placeholder='type here'/>
+                    <p>Product Image URL</p>
+                    <input type='text' name='image' placeholder='Type here' required value={itemImage} onChange={(e) => setItemImage(e.target.value)} />
                 </div>
-                <div className="add-price">
-                    <p>Product Price</p>
-                    <input type="Number" name='price' placeholder='$20'/>
+                <div className="add-product-name flex-col">
+                    <p>Product Name</p>
+                    <input type='text' name='name' placeholder='Type here' required value={itemName} onChange={(e) => setItemName(e.target.value)} />
                 </div>
-            </div>
-            <button type='submit' className='add-btn'>ADD</button>
-            
-        </form>
-    </div>
-  )
-}
+                <div className="add-product-description flex-col">
+                    <p>Description</p>
+                    <textarea name='description' rows="6" placeholder='Write Content Here' required value={itemDescription} onChange={(e) => setItemDescription(e.target.value)}></textarea>
+                </div>
+                <div className="add-category-price">
+                    <div className="add-category flex-col">
+                        <p>Product Availability</p>
+                        <select required value={availability} onChange={(e) => setAvailability(e.target.value === 'true')}>
+                            <option value="true">AVAILABLE</option>
+                            <option value="false">NOT AVAILABLE</option>
+                        </select>
+                    </div>
+                    <div className="add-product-name flex-col">
+                        <p>Product Category</p>
+                        <input type='text' name='category' placeholder='Type here' required value={category} onChange={(e) => setCategory(e.target.value)} />
+                    </div>
+                    <div className="add-price">
+                        <p>Product Price</p>
+                        <input type="number" name='price' placeholder='$20' required value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </div>
+                </div>
+                <button type='submit' className='add-btn'>Add Product</button>
+            </form>
+        </div>
+    );
+};
 
-export default Add
+export default Add;
+

@@ -129,6 +129,7 @@ const Login = () => {
         const result = response.data;
         if (result) {
             alert("Restaurant Login Success");
+            localStorage.setItem('resId',response.data.resId);
             localStorage.setItem('resphno', response.data.resPhoneNo);
             localStorage.setItem('respassword', response.data.resPassword);
             localStorage.setItem('resName', response.data.resName);

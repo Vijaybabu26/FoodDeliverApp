@@ -10,6 +10,8 @@ import Add from "./Pages/Add/Add";
 import List from "./Pages/List/List";
 import Order from "./Pages/Order/Order";
 
+import LogOut from './Components/LogOut/LogOut';
+
 var htmlRoot = document.getElementById("root");
 var rootReact = ReactDOM.createRoot(htmlRoot);
 
@@ -26,9 +28,9 @@ const App = () => {
     <div className='Admin'>
       <ToastContainer/>
       <Navbar/>
-      <h2 style={{ textAlign: 'center' }}>Welcome, {resname}</h2>
-      <h3 style={{ textAlign: 'center' }}>Add More Products To Increase Your Sales</h3>
-
+      <h2 style={{ textAlign: 'center' }}>Welcome, {resname}</h2><br></br>
+      <h3 style={{ textAlign: 'center' }}>Add More Products To Increase Your Sales</h3><br></br>
+      <LogOut/><br></br>
       <hr/>
       <div className="app-content">
       <Sidebar/>
