@@ -20,7 +20,12 @@ const RestaurantDisplay = () => {
     console.log(listofrestaurant);
   }
 
-  return (
+  return listofrestaurant.length === 0 ? ( 
+    <>
+    <h1>Restaurants Are Closed</h1>
+    <h2>EXPLORE OUR PAGE</h2>
+    </>
+  ) :(
     <div className='food-display' id='food-display'>
         <h2>Top Restaurants Near You</h2><br></br>
         <div className="food-display-list">
