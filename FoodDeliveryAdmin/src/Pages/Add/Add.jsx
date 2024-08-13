@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Add.css';
@@ -10,22 +9,20 @@ const Add = () => {
     const [price, setPrice] = useState("");
     const [availability, setAvailability] = useState(true); 
     const [category, setCategory] = useState("");
-    const [resId,setresId] = useState(0);
+    const [resId, setResId] = useState(0);
 
-    // const restaurantId = localStorage.getItem('resId');
     const restaurantId = parseInt(localStorage.getItem('resId'), 10);
     console.log(restaurantId);
-    
-    
+
     const AddProduct = async (event) => {
         event.preventDefault();
-        setresId(restaurantId);
+        setResId(restaurantId);
         const data = {
             itemName,
             itemImage,
             itemDescription,
             price,
-            resId: { resId: restaurantId },
+            resId:  { resId: restaurantId }, // Corrected this line
             availability,
             category
         };
@@ -41,12 +38,11 @@ const Add = () => {
 
             if (response.data) {
                 alert("Product Adding Success");
-                // Navigate('/list');
                 window.location.href = '/list';
             }
         } catch (error) {
             console.error('Error adding product:', error);
-           
+            alert('Failed to add product. Please try again.');
         }
     };
 
@@ -89,4 +85,3 @@ const Add = () => {
 };
 
 export default Add;
-
