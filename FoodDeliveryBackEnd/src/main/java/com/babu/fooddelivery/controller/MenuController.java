@@ -64,6 +64,17 @@ public class MenuController {
 	    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item not found for editing.");
 	}
 
+	@GetMapping("/edititemview/{itemName}")
+	public ResponseEntity<Menu> editItemView(@PathVariable("itemName") String itemName){
+		String itemname = itemName.toString();
+		Optional<Menu> menu = menurepo.findByItemName(itemname);
+		if(menu.isPresent()) {
+			Menu menu1 = menu.get();
+			return new ResponseEntity<>(menu1, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 	
 	@PostMapping("/deleteitem/{itemName}")
 	public ResponseEntity<Menu> deleteitem(@PathVariable("itemName") String itemName){
