@@ -1,10 +1,11 @@
 .res-container{
     display: flex;
-    background-color: rgba(225, 225, 225, 0.814);
+    align-items: baseline;
+    /* background-color: rgba(255, 255, 255, 0.814);
     width: 300px;
     height: 380px;
     border-radius: 20px;
-    color: white;
+    color: white; */
     margin: auto;
     box-shadow:  0px 0px 10px #00000015;
     transition: 0.3s;

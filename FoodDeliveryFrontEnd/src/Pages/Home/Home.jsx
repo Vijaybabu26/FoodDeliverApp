@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
-import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import Header from '../../components/Header/Header'
 import RestaurantDisplay from '../../components/RestaurantDisplay/RestaurantDisplay'
 import './Home.css'
@@ -13,8 +11,8 @@ const Home = () => {
     <div>
       <Header/>
       <RestaurantDisplay/>
-      <ExploreMenu category={category} setcategory={setcategory}/>
-        <FoodDisplay category={category}/>
+      {/* <ExploreMenu category={category} setcategory={setcategory}/>
+        <FoodDisplay category={category}/> */}
     </div>
   )
 }

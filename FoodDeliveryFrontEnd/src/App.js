@@ -7,6 +7,7 @@ import Home from "./Pages/Home/Home";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
 import ExploreMenu from "./components/ExploreMenu/ExploreMenu";
 import FoodDisplay from "./components/FoodDisplay/FoodDisplay";
+import FoodDisplayR from "./components/FoodDisplayR/FoodDisplayR";
 import Footer from "./components/Footer/Footer";
 import LoginPopup from "./components/Login/LoginPopup";
 import Navbar from "./components/Nav/Navbar";
@@ -31,6 +32,7 @@ const App = () =>{
         <Route path="/order" element={<PlaceOrder/>}/>
         <Route path="/food" element={<><ExploreMenu category={category} setcategory={setcategory} /><FoodDisplay category={category} /></>}/>
         <Route path="/login" element={<LoginPopup/>}/>
+        <Route path="/restaurantmenu" element={<FoodDisplayR/>}/>
        </Routes>
     </div>
     <Footer/>
