@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ItemEdit } from '../../Components/ItemEdit/ItemEdit';
+import ItemEdit from "./../../Components/ItemEdit/ItemEdit";
 import './List.css';
 const List = () => {
   const [listofproduct, setlistofproducts] = useState([]);
   const restaurantId = parseInt(localStorage.getItem('resId'));
-
+  const listofproduct1 = Array.isArray(listofproduct) ? listofproduct : [];
   useEffect(() => {
     fetchdata();
   }, []);
@@ -20,7 +20,7 @@ const List = () => {
     }
   };
 
-  return listofproduct.length === 0 ? (
+  return listofproduct1.length === 0 || restaurantId === 0 ? (
     <>
       <h1>ADD PRODUCTS TO INCREASE YOUR</h1><br></br>
       <h2>REVENUE</h2>
@@ -30,7 +30,9 @@ const List = () => {
       <div className='food-display' id='food-display'>
         <div className="res-container">
           {listofproduct.map((product) => (
-            <ItemEdit key={product.id} product={product} />
+            <ItemEdit key={product.id} product={product}/>
+            
+
           ))}
         </div>
       </div>

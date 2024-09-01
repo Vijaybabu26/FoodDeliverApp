@@ -7,7 +7,7 @@ const Add = () => {
     const [itemImage, setItemImage] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [availability, setAvailability] = useState(true); 
+    const [availabilty, setAvailabilty] = useState(true); 
     const [category, setCategory] = useState("");
     const [resId, setResId] = useState(0);
 
@@ -23,7 +23,7 @@ const Add = () => {
             itemDescription,
             price,
             resId:  { resId: restaurantId }, // Corrected this line
-            availability,
+            availabilty,
             category
         };
 
@@ -62,13 +62,13 @@ const Add = () => {
                     <textarea name='description' rows="6" placeholder='Write Content Here' required value={itemDescription} onChange={(e) => setItemDescription(e.target.value)}></textarea>
                 </div>
                 <div className="add-category-price">
-                    <div className="add-category flex-col">
-                        <p>Product Availability</p>
-                        <select required value={availability} onChange={(e) => setAvailability(e.target.value === 'true')}>
-                            <option value="true">AVAILABLE</option>
-                            <option value="false">NOT AVAILABLE</option>
-                        </select>
-                    </div>
+                <div className="add-category flex-col">
+                    <p>Product Availability</p>
+                    <select required value={availabilty} onChange={(e) => setAvailabilty(e.target.value === 'true' ? true : false)}>
+                        <option value="true">AVAILABLE</option>
+                        <option value="false">NOT AVAILABLE</option>
+                    </select>
+                </div>
                     <div className="add-product-name flex-col">
                         <p>Product Category</p>
                         <input type='text' name='category' placeholder='Type here' required value={category} onChange={(e) => setCategory(e.target.value)} />

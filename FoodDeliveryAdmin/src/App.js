@@ -11,6 +11,7 @@ import List from "./Pages/List/List";
 import Order from "./Pages/Order/Order";
 
 import LogOut from './Components/LogOut/LogOut';
+import EditItem from './Pages/EditItem/EditItem';
 
 var htmlRoot = document.getElementById("root");
 var rootReact = ReactDOM.createRoot(htmlRoot);
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/list" element={<List/>} />
         <Route path="/order" element={<Order/>} />
         <Route path="/login" element={<Login/>}/>
+        <Route path="/edititem" element={<EditItem/>}/>
       </Routes>
       </div>
     </div>
